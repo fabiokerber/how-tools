@@ -1,3 +1,5 @@
+## Ansible
+
 Para instalar o ansible em um sistema CentOS 7, primeiramente é necessário instalar o pacote com repositórios adicionais da RedHat, a fim de obter a última versão estável do software, através do seguinte comando:
 
 ```
@@ -21,13 +23,9 @@ ansible.cfg  hosts  roles
 
 Repare que existem 2 arquivos e 1 diretório vazio.
 
-O arquivo ansible.cfg armazena elementos de configuração do Ansible, se aplicam as formas como seu dispositivo deve se conectar aos sistemas gerenciados pela ferramenta e até definições de diretórios padrões de armazenamento de códigos.
-
-
-O arquivo hosts é o inventário, nele deve-se armazenar a lista de dispositivos que o Ansible pode interagir, originalmente este arquivo apenas possuí comentários com instruções de como montar este inventário.
-
-
-O diretório roles mantém códigos construídos ou obtidos pela comunidade que, por propósito, devem satisfazer, de forma independente, as necessidades que o fizeram ser escrito. Usamos o comando ansible-galaxy para interagir com esses códigos.
+* O arquivo ansible.cfg armazena elementos de configuração do Ansible, se aplicam as formas como seu dispositivo deve se conectar aos sistemas gerenciados pela ferramenta e até definições de diretórios padrões de armazenamento de códigos.
+* O arquivo hosts é o inventário, nele deve-se armazenar a lista de dispositivos que o Ansible pode interagir, originalmente este arquivo apenas possuí comentários com instruções de como montar este inventário.
+* O diretório roles mantém códigos construídos ou obtidos pela comunidade que, por propósito, devem satisfazer, de forma independente, as necessidades que o fizeram ser escrito. Usamos o comando ansible-galaxy para interagir com esses códigos.
 
 
 Antes de começar a programar para o nosso laboratório, vamos interagir através do Ansible com o sistema onde ele está instalado através dos comandos Ad-Hoc.
@@ -37,10 +35,10 @@ Primeiro, vamos instalar o vim usando o seguinte comando:
 # ansible localhost -m package -a "name=vim state=present"
 ```
 
-O comando ansible chama o método ad-hoc do Ansible.
-localhost indica os dispositivos que você vai interagir com as próximas instruções (com exceção de localhost e 127.0.0.1 é necessário que o dispositivo esteja registrado no inventário do arquivo hosts do Ansible ou equivalente).
--m indica o módulo que será usado para interagir com ações nos dispositivos listados anteriormente, o módulo package faz interações em pacotes no sistema).
--a define os argumentos do módulo selecionado, nesse caso o nome e estado do pacote vim no sistema operacional.
+* O comando ansible chama o método ad-hoc do Ansible.
+* localhost indica os dispositivos que você vai interagir com as próximas instruções (com exceção de localhost e 127.0.0.1 é necessário que o dispositivo esteja registrado no inventário do arquivo hosts do Ansible ou equivalente).
+* -m indica o módulo que será usado para interagir com ações nos dispositivos listados anteriormente, o módulo package faz interações em pacotes no sistema).
+* -a define os argumentos do módulo selecionado, nesse caso o nome e estado do pacote vim no sistema operacional.
 
 
 Pronto. Após a execução desse comando o pacote vim já deve estar disponível para o sistema operacional!
@@ -67,11 +65,11 @@ As instruções do primeiro código definem uma instalação de pacotes também,
       state: present
 ```
 
-No inicio da lista, o parâmetro hosts define em quais dispositivos esse código vai interagir.
-Tasks define o inicio das instruções baseadas em módulos.
-Package é o módulo genérico para instalação de pacotes, através dele é possível instalar pacotes em sistemas baseados em RedHat ou Debian.
-Name, dentro da lista iniciada no módulo yum, define o nome do pacote a ser instalado.
-State, também dentro da lista iniciada no módulo yum, define o estado do pacote no sistema, nesse caso garantindo que ele esteja instalado (do contrário inserir absent, para desinstalar).
+* No inicio da lista, o parâmetro hosts define em quais dispositivos esse código vai interagir.
+* Tasks define o inicio das instruções baseadas em módulos.
+* Package é o módulo genérico para instalação de pacotes, através dele é possível instalar pacotes em sistemas baseados em RedHat ou Debian.
+* Name, dentro da lista iniciada no módulo yum, define o nome do pacote a ser instalado.
+* State, também dentro da lista iniciada no módulo yum, define o estado do pacote no sistema, nesse caso garantindo que ele esteja instalado (do contrário inserir absent, para desinstalar).
 
 
 Para executar as instruções do arquivo, basta chamá-lo através do binário ansible-playbook.
@@ -163,15 +161,15 @@ Através do comando ansible-galaxy usamos o parâmetro init para definir que ser
 README.md  defaults  files  handlers  meta  tasks  templates  tests  vars
 ```
 
-O arquivo README.md deve conter informações sobre o desenvolvimento da role e instruções de como executá-la.
-O diretório defaults deve manter arquivos com variáveis padrões para a execução da role.
-O diretório files mantém arquivos que podem ser transferidos durante a execução da role.
-Em handlers podemos inserir tarefas repetitivas que serão executadas com a role para que possamos referenciá-las no código de desenvolvimento de tasks sempre que for necessário.
-Em meta armazenamos metadados que podem ser úteis para publicação do código no portal do Ansible Galaxy.
-As tasks são as tarefas que agiram nos computadores remotos.
-Templates, assim como files, armazena arquivos que podem ser transferidos durante a execução da role, no entanto, diferente de files, em templates as variáveis contidas no arquivo são calculadas baseadas na execução vigente.
-Tests define os procedimentos de teste de aderência das ações aplicadas na role.
-Já em vars definimos as variáveis usadas nas roles, essas com mais prioridade do que as definidas em default.
+* O arquivo README.md deve conter informações sobre o desenvolvimento da role e instruções de como executá-la.
+* O diretório defaults deve manter arquivos com variáveis padrões para a execução da role.
+* O diretório files mantém arquivos que podem ser transferidos durante a execução da role.
+* Em handlers podemos inserir tarefas repetitivas que serão executadas com a role para que possamos referenciá-las no código de desenvolvimento de tasks sempre que for necessário.
+* Em meta armazenamos metadados que podem ser úteis para publicação do código no portal do Ansible Galaxy.
+* As tasks são as tarefas que agiram nos computadores remotos.
+* Templates, assim como files, armazena arquivos que podem ser transferidos durante a execução da role, no entanto, diferente de files, em templates as variáveis contidas no arquivo são calculadas baseadas na execução vigente.
+* Tests define os procedimentos de teste de aderência das ações aplicadas na role.
+* Já em vars definimos as variáveis usadas nas roles, essas com mais prioridade do que as definidas em default.
 
 
 Antes de continuar, vamos usar o portal Ansible Galaxy para procurar e usar roles disponibilizadas por outros usuários. Através do navegador, acesse galaxy.ansible.com e clique em Search para buscar códigos desenvolvidos pela comunidade, as roles devem aparecer em ordem de popularidade - repare que o usuário geerlingguy tem muitas das roles mais populares do portal.
