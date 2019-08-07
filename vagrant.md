@@ -1,8 +1,8 @@
 # Vagrant
-Para começar a usar o Vagrant e montar máquinas virtuais, em num diretório separado usamos o binário Vagrant para criar o arquivo Vagrantfile (arquivo que específica as características das máquinas virtuais).
+Para começar a usar o Vagrant e montar o laboratório do curso, criamos um diretório para armazenar o código e iniciarmos nosso primeiro Vagrantfile (arquivo que específica as características das máquinas virtuais que usaremos no curso).
 ```
-$ mkdir lab
-$ cd lab
+$ mkdir infraagil
+$ cd infraagil
 $ vagrant init -m
 ```
 O último comando cria justamente o arquivo Vagrantfile no diretório corrente, através do parâmetro -m definimos que este arquivo deve conter o mínimo de informações possível, do contrário deve apresentar uma série de comentários.
